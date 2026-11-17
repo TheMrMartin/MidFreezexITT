@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mid Freezex ITT Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a knitwear shop front. Lilac band hero, a six-item product grid, a values strip, then the basket bar. */
+:root{
+  --paper:#faf8fc;
+  --card:#ffffff;
+  --ink:#1d1726;
+  --muted:#635a70;
+  --lilac:#d9c8ea;
+  --lilac-soft:#efe7f7;
+  --purple:#6b4a94;
+  --purple-deep:#3d2760;
+  --line:#e0d6ea;
+  --on-purple:#ffffff;
+  --display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#17121f;--card:#211a2d;--ink:#f1ecf7;--muted:#b3a8c2;
+    --lilac:#4a3668;--lilac-soft:#2a2138;--purple:#b596dc;--purple-deep:#d9c8ea;
+    --line:#3a2f4b;--on-purple:#1d1726;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#17121f;--card:#211a2d;--ink:#f1ecf7;--muted:#b3a8c2;
+  --lilac:#4a3668;--lilac-soft:#2a2138;--purple:#b596dc;--purple-deep:#d9c8ea;
+  --line:#3a2f4b;--on-purple:#1d1726;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--purple);outline-offset:2px}
+
+.notice{background:var(--purple-deep);color:var(--paper);font-size:14px;text-align:center;padding:8px 16px;font-weight:500}
+
+header.top{border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:5}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand svg{flex:none}
+.brand b{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:.01em;line-height:1;display:block}
+.brand small{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-top:4px}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted);font-weight:600}
+nav{display:flex;gap:20px;font-weight:600;font-size:15px}
+nav a{text-decoration:none}
+nav a:hover{color:var(--purple)}
+.basket-btn{background:var(--purple);color:var(--on-purple);border:0;border-radius:999px;padding:9px 16px;font-weight:700;display:flex;gap:8px;align-items:center}
+.basket-btn span{background:var(--on-purple);color:var(--purple);border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:13px;font-variant-numeric:tabular-nums}
+
+.hero{background:var(--lilac);border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;padding-top:48px;padding-bottom:48px}
+.eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--purple-deep)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,5.4vw,60px);line-height:1.02;margin:12px 0 16px;text-wrap:balance}
+.hero p{max-width:52ch;font-size:18px;margin:0 0 24px}
+.cta{display:inline-block;background:var(--purple-deep);color:var(--paper);text-decoration:none;font-weight:700;padding:13px 22px;border-radius:10px}
+.thermo{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.thermo h2{font-family:var(--display);font-size:15px;margin:0 0 12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.thermo dl{margin:0;display:grid;gap:10px}
+.thermo div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:10px}
+.thermo div:last-child{border:0;padding-bottom:0}
+.thermo dt{color:var(--muted)}
+.thermo dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+
+section{padding:56px 0}
+h2.sec{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.4vw,36px);margin:0 0 6px;text-wrap:balance}
+p.lead{color:var(--muted);margin:0 0 28px;max-width:60ch}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.pic{background:var(--lilac-soft);aspect-ratio:4/3;display:grid;place-items:center;position:relative}
+.pic svg{width:58%;height:auto}
+.badge{position:absolute;top:12px;left:12px;background:var(--purple-deep);color:var(--paper);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.info{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.info h3{font-family:var(--display);font-size:20px;margin:0;line-height:1.2}
+.info p{margin:0;color:var(--muted);font-size:15px}
+.tog{font-size:13px;font-weight:700;color:var(--purple)}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:10px}
+.price{font-family:var(--display);font-weight:700;font-size:22px;font-variant-numeric:tabular-nums}
+.add{background:transparent;border:2px solid var(--purple);color:var(--purple);font-weight:700;border-radius:10px;padding:8px 14px}
+.add:hover,.add.done{background:var(--purple);color:var(--on-purple)}
+
+.values{background:var(--lilac-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.core{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.core li{list-style:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;gap:16px;align-items:flex-start}
+.core{padding:0;margin:0}
+.letter{flex:none;width:52px;height:52px;border-radius:14px;background:var(--lilac);color:var(--purple-deep);font-family:var(--display);font-weight:800;font-size:28px;display:grid;place-items:center}
+.core strong{display:block;font-family:var(--display);font-size:19px}
+.core span{color:var(--muted);font-size:15px}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.facts div{border-left:3px solid var(--purple);padding-left:14px}
+.facts b{display:block}
+.facts span{color:var(--muted);font-size:15px}
+
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14px}
+footer p{margin:0 0 6px;max-width:75ch}
+
+dialog{border:0;border-radius:18px;padding:0;background:var(--card);color:var(--ink);width:min(520px,calc(100% - 32px));box-shadow:0 24px 60px rgba(30,15,50,.35)}
+dialog::backdrop{background:rgba(29,23,38,.55)}
+.dlg{padding:26px}
+.dlg h2{font-family:var(--display);font-size:26px;margin:0 0 12px;text-wrap:balance}
+.dlg ul{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.dlg li{display:flex;justify-content:space-between;gap:12px;font-variant-numeric:tabular-nums}
+.dlg .total{border-top:1px solid var(--line);padding-top:10px;font-weight:700}
+.dlg p{margin:0 0 14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:18px}
+.primary{background:var(--purple);color:var(--on-purple);border:0;border-radius:10px;padding:11px 18px;font-weight:700}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:11px 18px;font-weight:600}
+.reveal{background:var(--lilac-soft);border-radius:12px;padding:16px}
+[hidden]{display:none!important}
+
+@media (max-width:760px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:32px;padding-bottom:32px}
+  nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="notice">Free delivery to any lecture hall below 12 °C. Winter 2026 range now in.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Mid Freezex ITT shop home">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <rect width="44" height="44" rx="12" fill="var(--purple)"/>
+        <g stroke="var(--on-purple)" stroke-width="2.4" stroke-linecap="round">
+          <path d="M22 9v26M10.7 15.5l22.6 13M10.7 28.5l22.6-13"/>
+          <path d="M22 13l-3-3M22 13l3-3M22 31l-3 3M22 31l3 3"/>
+        </g>
+      </svg>
+      <span><b>MID FREEZEX ITT</b><small>Initial Thermal Training</small></span>
+    </a>
+    <span class="tag">Parody shop</span>
+    <nav aria-label="Sections">
+      <a href="#range">Range</a>
+      <a href="#values">Our CORE</a>
+      <a href="#delivery">Delivery</a>
+    </nav>
+    <button class="basket-btn" id="open-basket" type="button">Basket <span id="count">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Official trainee knitwear, winter 2026</div>
+        <h1>Dress for the hall you have, not the hall you were promised.</h1>
+        <p>Hats, scarves, gloves, jumpers and socks in programme lilac. Knitted for full-day training sessions where the heating is described as "on".</p>
+        <a class="cta" href="#range">Shop the range</a>
+      </div>
+      <aside class="thermo" aria-label="Lecture hall conditions">
+        <h2>Lecture hall conditions</h2>
+        <dl>
+          <div><dt>Hall temperature, Monday</dt><dd>Brisk</dd></div>
+          <div><dt>Radiators observed working</dt><dd>0 of 6</dd></div>
+          <div><dt>Trainees wearing coats indoors</dt><dd>All of them</dd></div>
+          <div><dt>Recommended layers for Wednesday</dt><dd>4</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+
+  <section id="range">
+    <div class="wrap">
+      <h2 class="sec">The cold weather range</h2>
+      <p class="lead">Every item carries a tog rating, so you can plan your layers with the same care as your lesson timings.</p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="values" id="values">
+    <div class="wrap">
+      <h2 class="sec">Our CORE values, now in wool</h2>
+      <p class="lead">The same four values, applied to the pressing matter of keeping warm.</p>
+      <ul class="core">
+        <li><div class="letter">C</div><div><strong>Committed</strong><span>To staying in the room for the full session, whatever the thermometer says.</span></div></li>
+        <li><div class="letter">O</div><div><strong>Optimistic</strong><span>That the heating will come on shortly. It has been coming on shortly since September.</span></div></li>
+        <li><div class="letter">R</div><div><strong>Research-engaged</strong><span>Informed by the evidence on layering, including one seminal study of a trainee in two coats.</span></div></li>
+        <li><div class="letter">E</div><div><strong>Effective</strong><span>Down to minus 5 °C, or one cohort day in the main hall, whichever comes first.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="delivery">
+    <div class="wrap">
+      <h2 class="sec">Delivery and returns</h2>
+      <p class="lead">Simple terms for people with no feeling in their fingers.</p>
+      <div class="facts">
+        <div><b>Next cohort day delivery</b><span>Left on your chair before the Do It Now.</span></div>
+        <div><b>Sizing</b><span>One size fits most trainees and at least one mentor.</span></div>
+        <div><b>Returns</b><span>Accepted once the hall reaches 18 °C. No returns have been processed to date.</span></div>
+        <div><b>Care</b><span>Wash at 30 °C, which is warmer than the hall.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Mid Freezex ITT is a parody.</strong> It is a joke between trainees and is not connected to, or endorsed by, any teacher training provider. Nothing on this page is for sale and no orders or payments are taken.</p>
+    <p>Made with cold hands, November 2026.</p>
+  </div>
+</footer>
+
+<dialog id="basket" aria-labelledby="dlg-title">
+  <div class="dlg">
+    <div id="view-basket">
+      <h2 id="dlg-title">Your basket</h2>
+      <ul id="lines"></ul>
+      <p id="empty">Your basket is empty. Your extremities will remember this.</p>
+      <div class="row">
+        <button class="ghost" type="button" data-close>Keep shopping</button>
+        <button class="primary" type="button" id="checkout">Checkout</button>
+      </div>
+    </div>
+    <div id="view-reveal" hidden>
+      <h2>Order not placed</h2>
+      <div class="reveal">
+        <p><strong>This shop does not exist.</strong> There is no beanie, no scarf and, sadly, no jumper.</p>
+        <p>The hall, however, is entirely real and just as cold as you remember. Bring your own layers tomorrow.</p>
+        <p style="margin:0">You have been had. Pass the link to the next person and keep a straight face.</p>
+      </div>
+      <div class="row"><button class="primary" type="button" data-close>Fair enough</button></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const P = '#6b4a94', L = '#b99ad6', D = '#3d2760', W = '#ffffff';
+const art = {
+  hat:`<svg viewBox="0 0 120 100"><circle cx="60" cy="14" r="11" fill="${L}"/><path d="M22 72c0-28 16-48 38-48s38 20 38 48z" fill="${P}"/><path d="M40 30l-6 42M60 24v48M80 30l6 42" stroke="${D}" stroke-width="2" opacity=".5"/><rect x="16" y="68" width="88" height="22" rx="8" fill="${L}"/><path d="M28 70v18M40 70v18M52 70v18M64 70v18M76 70v18M88 70v18" stroke="${P}" stroke-width="2"/></svg>`,
+  scarf:`<svg viewBox="0 0 120 100"><path d="M30 20c0-8 60-8 60 0v16c0 8-60 8-60 0z" fill="${P}"/><path d="M42 30l8 62h-22l-6-58z" fill="${L}"/><path d="M70 34h20l4 50H74z" fill="${P}"/><path d="M24 78h25M23 66h25M74 70h19M74 58h18" stroke="${W}" stroke-width="4"/><path d="M30 92v6M36 92v6M42 92v6M48 92v6M78 84v6M84 84v6M90 84v6" stroke="${D}" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  gloves:`<svg viewBox="0 0 120 100"><g id="g"><path d="M16 46c0-6 8-6 8 0V22c0-6 8-6 8 0v-4c0-6 8-6 8 0v4c0-6 8-6 8 0v30l5-8c3-5 10-1 7 5l-10 22H20z" fill="${P}"/><rect x="18" y="70" width="34" height="18" rx="5" fill="${L}"/></g><use href="#g" transform="translate(120 0) scale(-1 1)"/></svg>`,
+  jumper:`<svg viewBox="0 0 120 100"><path d="M42 12h36l26 16-6 52-12-2V92H34V78l-12 2-6-52z" fill="${P}"/><path d="M42 12c4 10 32 10 36 0" fill="none" stroke="${L}" stroke-width="6"/><rect x="34" y="82" width="52" height="10" fill="${L}"/><path d="M60 40v20M51.3 45l17.4 10M51.3 55l17.4-10" stroke="${W}" stroke-width="3" stroke-linecap="round"/></svg>`,
+  socks:`<svg viewBox="0 0 120 100"><g id="s"><path d="M22 10h24v46l18 12c10 7 2 22-10 18L26 76c-3-2-4-5-4-9z" fill="${P}"/><rect x="22" y="10" width="24" height="14" fill="${L}"/><path d="M52 84c8 3 14-2 14-8" stroke="${L}" stroke-width="6" fill="none" stroke-linecap="round"/></g><use href="#s" transform="translate(46 4)"/></svg>`,
+  bundle:`<svg viewBox="0 0 120 100"><rect x="18" y="36" width="84" height="54" rx="6" fill="${P}"/><rect x="12" y="24" width="96" height="18" rx="5" fill="${L}"/><rect x="54" y="24" width="12" height="66" fill="${W}"/><path d="M60 24c-14-22-34-6-14 0M60 24c14-22 34-6 14 0" fill="none" stroke="${D}" stroke-width="5" stroke-linecap="round"/></svg>`
+};
+const items = [
+  {id:'hat',name:'The Lecture Hall Beanie',price:14,tog:'Tog 6',badge:'Bestseller',text:'Double-knit with a pompom. Rated for a 50 minute input with the heating off.'},
+  {id:'scarf',name:'The Cold Call Scarf',price:18,tog:'Tog 5',text:'1.8 m of lilac stripe. Wraps twice and still leaves room for a think, pair, share.'},
+  {id:'gloves',name:'Mini-Whiteboard Gloves',price:12,tog:'Tog 4',text:'Grip palms for holding a board pen. Answers remain legible on the count of three.'},
+  {id:'jumper',name:'The Subject Knowledge Jumper',price:35,tog:'Tog 9',badge:'New',text:'Heavy cable knit. Secure, deep and unlikely to leave you exposed in front of a class.'},
+  {id:'socks',name:'Do It Now Socks',price:9,tog:'Tog 3',text:'Pack of two pairs. Put them on as soon as you enter the room, in silence.'},
+  {id:'bundle',name:'The Full Cohort Day Bundle',price:75,tog:'Tog 27',badge:'Save £13',text:'One of everything. The complete adaptive response to an unheated hall.'}
+];
+const basket = {};
+const grid = document.getElementById('grid');
+grid.innerHTML = items.map(i => `
+  <article class="item">
+    <div class="pic">${i.badge ? `<span class="badge">${i.badge}</span>` : ''}${art[i.id]}</div>
+    <div class="info">
+      <span class="tog">${i.tog} · Programme lilac</span>
+      <h3>${i.name}</h3>
+      <p>${i.text}</p>
+      <div class="buy"><span class="price">£${i.price}</span>
+      <button class="add" type="button" data-id="${i.id}">Add to basket</button></div>
+    </div>
+  </article>`).join('');
+
+const dlg = document.getElementById('basket');
+const viewB = document.getElementById('view-basket'), viewR = document.getElementById('view-reveal');
+function render(){
+  const ids = Object.keys(basket);
+  let n = 0, total = 0;
+  const rows = ids.map(id => {
+    const i = items.find(x => x.id === id), q = basket[id];
+    n += q; total += q * i.price;
+    return `<li><span>${q} × ${i.name}</span><span>£${q * i.price}</span></li>`;
+  });
+  if (ids.length) rows.push(`<li class="total"><span>Total</span><span>£${total}</span></li>`);
+  document.getElementById('lines').innerHTML = rows.join('');
+  document.getElementById('empty').hidden = ids.length > 0;
+  document.getElementById('checkout').hidden = ids.length === 0;
+  document.getElementById('count').textContent = n;
+}
+grid.addEventListener('click', e => {
+  const b = e.target.closest('.add'); if (!b) return;
+  basket[b.dataset.id] = (basket[b.dataset.id] || 0) + 1;
+  b.textContent = 'Added'; b.classList.add('done');
+  setTimeout(() => { b.textContent = 'Add to basket'; b.classList.remove('done'); }, 1200);
+  render();
+});
+document.getElementById('open-basket').addEventListener('click', () => {
+  viewB.hidden = false; viewR.hidden = true; render(); dlg.showModal();
+});
+document.getElementById('checkout').addEventListener('click', () => { viewB.hidden = true; viewR.hidden = false; });
+dlg.addEventListener('click', e => { if (e.target.closest('[data-close]') || e.target === dlg) dlg.close(); });
+render();
+</script>
+</body>
+</html>
